@@ -25,7 +25,6 @@ export default function Calculator() {
     function clickDigit(e: React.MouseEvent) {
         const digit = e.currentTarget.textContent;
 
-        //todo
         const currentValueStr = currentValue.toString();
         const argumentStr = argument.toString();
 
@@ -36,7 +35,7 @@ export default function Calculator() {
         }
     }
 
-    // todo doCalculate if operation already was set
+    // todo: doCalculate if operation already was set
     function clickOperation(operation: string) {
         setOperation(operation);
     }

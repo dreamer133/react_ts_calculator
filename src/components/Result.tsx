@@ -5,7 +5,6 @@ interface propsResult {
 }
 
 export default function Result(props: propsResult) {
-
     const {text} = props;
 
     return (
