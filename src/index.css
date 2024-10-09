@@ -29,6 +29,7 @@ code {
   height: 400px;
   border: 1px #333333 solid;
   font-family: Arial, Helvetica, sans-serif;
+  background:#345678;
 }
 
 .result_wrapper {

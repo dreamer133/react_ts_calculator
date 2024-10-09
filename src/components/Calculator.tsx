@@ -85,7 +85,7 @@ export default function Calculator() {
 
     return (
         <>
-            <h1 className='caption1'>Calculator</h1>
+            <h1 className='caption1'>Very simple Calculator</h1>
             <div className='calc_container'>
                 <div className='result_wrapper'>
                     <Result text={expressionStr} />
