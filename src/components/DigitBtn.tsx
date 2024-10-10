@@ -5,7 +5,7 @@ interface propsDigit {
     handleDigitClick(): void;
 }
 
-export default function Digit(props: propsDigit) {
+export default function DigitBtn(props: propsDigit) {
     const { num, handleDigitClick } = props;
 
     return (

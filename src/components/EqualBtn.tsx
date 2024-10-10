@@ -4,7 +4,7 @@ interface propsEqual {
     handleEqualClick(e:any):void;
 }
 
-export default function Equal(props: propsEqual) {
+export default function EqualBtn(props: propsEqual) {
     const {handleEqualClick} = props;
 
     return (

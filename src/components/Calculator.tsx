@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Digit from './Digit';
+import DigitBtn from './DigitBtn';
 import OperationBtn from './OperationBtn';
-import Reset from './Reset';
-import Equal from './Equal';
+import ResetBtn from './ResetBtn';
+import EqualBtn from './EqualBtn';
 import Result from './Result';
 import { Operation } from '../types';
 
@@ -85,23 +85,23 @@ export default function Calculator() {
                 <div className='buttons_wrapper'>
                     <div className='digit_block'>
                         <div className='item_row'>
-                            <Digit num={7} handleDigitClick={() => {handleDigitClick(7)}} />
-                            <Digit num={8} handleDigitClick={() => {handleDigitClick(8)}} />
-                            <Digit num={9} handleDigitClick={() => {handleDigitClick(9)}} />
+                            <DigitBtn num={7} handleDigitClick={() => {handleDigitClick(7)}} />
+                            <DigitBtn num={8} handleDigitClick={() => {handleDigitClick(8)}} />
+                            <DigitBtn num={9} handleDigitClick={() => {handleDigitClick(9)}} />
                         </div>
                         <div className='item_row'>
-                            <Digit num={4} handleDigitClick={() => {handleDigitClick(4)}} />
-                            <Digit num={5} handleDigitClick={() => {handleDigitClick(5)}} />
-                            <Digit num={6} handleDigitClick={() => {handleDigitClick(6)}} />
+                            <DigitBtn num={4} handleDigitClick={() => {handleDigitClick(4)}} />
+                            <DigitBtn num={5} handleDigitClick={() => {handleDigitClick(5)}} />
+                            <DigitBtn num={6} handleDigitClick={() => {handleDigitClick(6)}} />
                         </div>
                         <div className='item_row'>
-                            <Digit num={1} handleDigitClick={() => {handleDigitClick(1)}} />
-                            <Digit num={2} handleDigitClick={() => {handleDigitClick(2)}} />
-                            <Digit num={3} handleDigitClick={() => {handleDigitClick(3)}} />
+                            <DigitBtn num={1} handleDigitClick={() => {handleDigitClick(1)}} />
+                            <DigitBtn num={2} handleDigitClick={() => {handleDigitClick(2)}} />
+                            <DigitBtn num={3} handleDigitClick={() => {handleDigitClick(3)}} />
                         </div>
                         <div className='item_row'>
-                            <Reset doReset={doReset} />
-                            <Digit num={0} handleDigitClick={() => {handleDigitClick(0)}} />
+                            <ResetBtn doReset={doReset} />
+                            <DigitBtn num={0} handleDigitClick={() => {handleDigitClick(0)}} />
                         </div>
                     </div>
                     <div className='operations_block'>
@@ -120,7 +120,7 @@ export default function Calculator() {
                     </div>
                     <div className='equal_block'>
                         <div className='item_row'>
-                            <Equal handleEqualClick={handleEqualClick} />
+                            <EqualBtn handleEqualClick={handleEqualClick} />
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ interface propsReset {
     doReset(): void;
 }
 
-export default function Reset(props: propsReset) {
+export default function ResetBtn(props: propsReset) {
 
     const { doReset } = props;
 
