@@ -3,14 +3,14 @@ import React from 'react';
 interface propsOperation {
     operation: string;
     caption?: string;
-    clickOperation(operation:string): void;
+    handleOperationClick(operation:string): void;
 }
 
-export default function Operation(props: propsOperation) {
-    const { operation, caption, clickOperation } = props;
+export default function OperationBtn(props: propsOperation) {
+    const { operation, caption, handleOperationClick } = props;
 
     function onClick(e:React.MouseEvent) {
-        clickOperation(operation);
+        handleOperationClick(operation);
     }
 
     return (

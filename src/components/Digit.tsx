@@ -2,14 +2,14 @@ import React from 'react';
 
 interface propsDigit {
     num: number;
-    clickDigit(e: React.MouseEvent): void;
+    handleDigitClick(): void;
 }
 
 export default function Digit(props: propsDigit) {
-    const { num, clickDigit } = props;
+    const { num, handleDigitClick } = props;
 
     return (
-        <button className="btn digit" onClick={clickDigit}>{num}</button>
+        <button className="btn digit" onClick={handleDigitClick}>{num}</button>
     )
 };
 

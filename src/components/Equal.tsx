@@ -1,14 +1,14 @@
 import  React from 'react';
 
 interface propsEqual {
-    clickEqual(e:any):void;
+    handleEqualClick(e:any):void;
 }
 
 export default function Equal(props: propsEqual) {
-    const {clickEqual} = props;
+    const {handleEqualClick} = props;
 
     return (
-        <button className='btn equal' onClick={clickEqual}>=</button>
+        <button className='btn equal' onClick={handleEqualClick}>=</button>
     )
 };
 

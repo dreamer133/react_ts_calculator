@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Digit from './Digit';
-import Operation from './Operation';
+import OperationBtn from './OperationBtn';
 import Reset from './Reset';
 import Equal from './Equal';
 import Result from './Result';
+import { Operation } from '../types';
 
 export default function Calculator() {
     const [currentValue, setCurrentValue] = useState(0);
     const [argument, setArgument] = useState(0);
-    const [operation, setOperation] = useState('');
+    const [operation, setOperation] = useState<Operation|undefined>();
     const [expressionStr, setExpressionStr] = useState('')
 
     useEffect(() => {
@@ -18,13 +19,11 @@ export default function Calculator() {
     function doReset() {
         setCurrentValue(0);
         setArgument(0);
-        setOperation('');
+        setOperation(undefined);
         setExpressionStr('');
     }
 
-    function clickDigit(e: React.MouseEvent) {
-        const digit = e.currentTarget.textContent;
-
+    function handleDigitClick(digit: number) {
         const currentValueStr = currentValue.toString();
         const argumentStr = argument.toString();
 
@@ -36,50 +35,44 @@ export default function Calculator() {
     }
 
     // todo: doCalculate if operation already was set
-    function clickOperation(operation: string) {
+    function handleOperationClick(operation: Operation) {
         setOperation(operation);
     }
 
     function renderExpression() {
         setExpressionStr(currentValue.toString()
-            + operation
+            + (operation || '')
             + (argument === 0 ? '' : argument.toString())
         );
     }
 
     // do calculate if currentValue and argument and operation
-    function clickEqual(e: React.MouseEvent) {
+    function handleEqualClick() {
         if (currentValue && argument && operation) {
             const result = doCalculation();
             setCurrentValue(result);
             setExpressionStr(result.toString());
 
             setArgument(0);
-            setOperation('');
+            setOperation(undefined);
         }
     }
 
     function doCalculation(): number {
-        let ret = 0;
+        if (!operation) {
+            return 0;
+        }
 
         switch (operation) {
             case '+':
-                ret = currentValue + argument;
-                break;
+                return currentValue + argument;
             case '-':
-                ret = currentValue - argument;
-                break;
+                return currentValue - argument;
             case '*':
-                ret = currentValue * argument;
-                break;
+                return currentValue * argument;
             case '/':
-                ret = currentValue / argument;
-                break;
-            default:
-                throw new Error('unknown operation');
+                return currentValue / argument;
         }
-
-        return ret;
     }
 
     return (
@@ -92,42 +85,42 @@ export default function Calculator() {
                 <div className='buttons_wrapper'>
                     <div className='digit_block'>
                         <div className='item_row'>
-                            <Digit num={7} clickDigit={clickDigit} />
-                            <Digit num={8} clickDigit={clickDigit} />
-                            <Digit num={9} clickDigit={clickDigit} />
+                            <Digit num={7} handleDigitClick={() => {handleDigitClick(7)}} />
+                            <Digit num={8} handleDigitClick={() => {handleDigitClick(8)}} />
+                            <Digit num={9} handleDigitClick={() => {handleDigitClick(9)}} />
                         </div>
                         <div className='item_row'>
-                            <Digit num={4} clickDigit={clickDigit} />
-                            <Digit num={5} clickDigit={clickDigit} />
-                            <Digit num={6} clickDigit={clickDigit} />
+                            <Digit num={4} handleDigitClick={() => {handleDigitClick(4)}} />
+                            <Digit num={5} handleDigitClick={() => {handleDigitClick(5)}} />
+                            <Digit num={6} handleDigitClick={() => {handleDigitClick(6)}} />
                         </div>
                         <div className='item_row'>
-                            <Digit num={1} clickDigit={clickDigit} />
-                            <Digit num={2} clickDigit={clickDigit} />
-                            <Digit num={3} clickDigit={clickDigit} />
+                            <Digit num={1} handleDigitClick={() => {handleDigitClick(1)}} />
+                            <Digit num={2} handleDigitClick={() => {handleDigitClick(2)}} />
+                            <Digit num={3} handleDigitClick={() => {handleDigitClick(3)}} />
                         </div>
                         <div className='item_row'>
                             <Reset doReset={doReset} />
-                            <Digit num={0} clickDigit={clickDigit} />
+                            <Digit num={0} handleDigitClick={() => {handleDigitClick(0)}} />
                         </div>
                     </div>
                     <div className='operations_block'>
                         <div className='item_row'>
-                            <Operation operation={'/'} caption='&divide;' clickOperation={clickOperation} />
+                            <OperationBtn operation={'/'} caption='&divide;' handleOperationClick={handleOperationClick} />
                         </div>
                         <div className='item_row'>
-                            <Operation operation={'*'} clickOperation={clickOperation} />
+                            <OperationBtn operation={'*'} handleOperationClick={handleOperationClick} />
                         </div>
                         <div className='item_row'>
-                            <Operation operation={'-'} clickOperation={clickOperation} />
+                            <OperationBtn operation={'-'} handleOperationClick={handleOperationClick} />
                         </div>
                         <div className='item_row'>
-                            <Operation operation={'+'} clickOperation={clickOperation} />
+                            <OperationBtn operation={'+'} handleOperationClick={handleOperationClick} />
                         </div>
                     </div>
                     <div className='equal_block'>
                         <div className='item_row'>
-                            <Equal clickEqual={clickEqual} />
+                            <Equal handleEqualClick={handleEqualClick} />
                         </div>
                     </div>
                 </div>
