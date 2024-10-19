@@ -5,6 +5,7 @@ import ResetBtn from './ResetBtn';
 import EqualBtn from './EqualBtn';
 import Result from './Result';
 import { Operation } from '../types';
+import '../styles.css';
 
 export default function Calculator() {
     const [currentValue, setCurrentValue] = useState(0);
